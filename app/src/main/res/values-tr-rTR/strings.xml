@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">User List Application</string>
+
+    <string name="list_fragment_label">Liste Sayfası</string>
+
+    <string name="info_no_data">Veri yok</string>
+</resources>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">User List Application</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="list_fragment_label">List Fragment</string>
+
+    <string name="info_no_data">There is no data</string>
+</resources>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewState"
+            type="com.global.userlistapplication.ui.PersonListStatusViewState" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:id="@+id/parent_swipe_refresh"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="12"
+                android:orientation="vertical">
+
+
+                <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                    android:id="@+id/swipe_refresh"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:swipeRefreshLayoutProgressSpinnerBackgroundColor="@color/blue_500">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_recycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:listitem="@layout/item_person_info" />
+
+                </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/error_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:visibleIf="@{viewState.shouldShowErrorMessage()}">
+
+                <ImageView
+                    android:id="@+id/ic_error"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_baseline_error_outline_24" />
+
+                <TextView
+                    android:id="@+id/tv_error"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="3"
+                    android:text="@{viewState.errorMessage}"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    tools:text="Internal Server Error" />
+
+                <ImageView
+                    android:id="@+id/ic_refresh"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_baseline_refresh_24" />
+
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/iv_refresh"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:indeterminateTint="@color/blue_500"
+                android:paddingVertical="10dp"
+                app:visibleIf="@{viewState.loading}" />
+
+
+        </LinearLayout>
+
+        <include
+            android:id="@+id/no_data_page"
+            layout="@layout/layout_no_data_page"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
+
+</layout>
