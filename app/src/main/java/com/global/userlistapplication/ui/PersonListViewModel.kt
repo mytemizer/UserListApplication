@@ -56,6 +56,7 @@ class PersonListViewModel @Inject constructor(
         personListLD.value = ArrayList()
         personList.clear()
         personIdSet.clear()
+        next = null
     }
 
 
